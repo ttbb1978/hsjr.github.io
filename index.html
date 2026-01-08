@@ -114,50 +114,7 @@
         
         .card:hover .subtitle { color: #444; }
         .margin-b-8 { margin-bottom: 8px; }
-        
-        /* 链接与按钮样式 */
-        a { 
-            color: #3366ff; 
-            text-decoration: none; 
-            transition: all 0.3s ease; 
-            position: relative;
-        }
-        
-        a::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: #3366ff;
-            transition: width 0.3s ease;
-        }
-        
-        a:hover::after { width: 100%; }
-        
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 8px 16px;
-            background: #3366ff;
-            color: #fff !important;
-            border-radius: 6px;
-            font-weight: 500;
-            text-decoration: none !important;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 5px rgba(51, 102, 255, 0.3);
-        }
-        
-        .btn:hover { 
-            background: #2855e6; 
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(51, 102, 255, 0.4);
-        }
-        
+                
         /* 布局工具类 */
         .flex { display: flex; gap: 24px; flex-wrap: wrap; }
         .flex-item { flex: 1; min-width: 280px; }
@@ -206,52 +163,7 @@
             background-color: rgba(51, 102, 255, 0.1);
             transform: translateY(-2px);
         }
-        
-        /* 下载区样式 */
-        .download-list { 
-            display: flex; 
-            flex-wrap: wrap; 
-            gap: 20px; 
-        }
-        
-        .download-card {
-            flex: 1;
-            min-width: 250px;
-            padding: 20px;
-            border-radius: 12px;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .download-card:nth-child(1) { border-left: 4px solid #3ddc84; background-color: rgba(61, 220, 132, 0.05); }
-        .download-card:nth-child(2) { border-left: 4px solid #2196f3; background-color: rgba(33, 150, 243, 0.05); }
-        .download-card:nth-child(3) { border-left: 4px solid #ff9800; background-color: rgba(255, 152, 0, 0.05); }
-        .download-card:nth-child(4) { border-left: 4px solid #e91e63; background-color: rgba(233, 30, 99, 0.05); }
-        
-        .download-card:hover { 
-            transform: translateY(-5px); 
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-        }
-        
-        .download-title {
-            font-weight: 500;
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 17px;
-        }
-        
-        .download-icon { 
-            font-size: 20px; 
-            width: 28px; 
-            text-align: center; 
-            transition: transform 0.3s ease;
-        }
-        
-        .download-card:hover .download-icon { transform: scale(1.2) rotate(10deg); }
-        
+               
         /* 联系与底部样式 */
         .contact-list {
             display: flex;
@@ -436,7 +348,7 @@
     <div class="container">
         <!-- 头部区域 -->
         <header class="header">
-            <div class="logo">🍁 田兵个人网站</div>
+            <div class="logo">🍁 TB HSJR</div>
             <button class="theme-toggle" onclick="toggleTheme()">
                 <i class="fa-solid fa-moon"></i>
             </button>
@@ -445,7 +357,7 @@
         <!-- 个人信息区域 -->
         <section class="card">
             <div class="card-header">
-               <h2 class="title">🍀TB🌸ハンサム</h2>
+               <h2 class="title"></h2>
                <div class="visit-counter">                                                                     
                    <span><i class="fa fa-cog fa-spin"></i></span> 
                    在线<span id="aa"></span>
@@ -453,10 +365,10 @@
             </div>
             
             <div class="text-center" style="margin: 24px 0;">
-                <img src="http://q1.qlogo.cn/g?b=qq&nk=765931440&s=640"/>
-                <img src="http://q1.qlogo.cn/g?b=qq&nk=1040458166&s=640"/>
-                <img src="http://q1.qlogo.cn/g?b=qq&nk=2409495157&s=640"/>
-                <img src="http://q1.qlogo.cn/g?b=qq&nk=2358429597&s=640"/>
+                <img src="https://ak-d.tripcdn.com/images/1A0a1e000001fr5q55789_C_760_506_R5.jpg"/>
+                <img src="https://ak-d.tripcdn.com/images/0100a12000odk4pee10E5_C_760_506_R5.jpg"/>
+                <img src="https://ak-d.tripcdn.com/images/1A0o1e000001foof84DD7_C_760_506_R5.jpg"/>
+                <img src="https://ak-d.tripcdn.com/images/1A051e000001fsccbBE2B_C_760_506_R5.jpg"/>
             </div> 
             
             <center>		
@@ -472,101 +384,21 @@
                 </div>
             </div>
         </section>
-        
-        <!-- 导航与Banner区域 -->
-        <section class="flex">
+                
             <div class="card flex-item">
-                <h2 class="title"><i class="fa-solid fa-compass"></i> 快速导航</h2>
-                <p class="subtitle">带你快速了解这个世界...</p>
-                <div class="nav">
-                    <a href="https://www.7ed.net/gitmirror/hub.html" class="nav-link"><i class="fa-brands fa-github"></i> GitHub加速</a>
-                    <a href="https://ai.tb79.de5.net" class="nav-link"><i class="fa-solid fa-cloud"></i> TBai</a>
-                    <a href="https://cf.090227.xyz" class="nav-link"><i class="fa-solid fa-cloud"></i> CM优选</a>
-                    <a href="https://vps789.com/cfip/?remarks=domain" class="nav-link"><i class="fa-solid fa-cloud"></i> VPS789</a>
-                    <a href="https://check-proxyip.ssss.nyc.mn" class="nav-link"><i class="fa-solid fa-star"></i>Proxyip 检测</a>
-                    <a href="https://api.kuleu.com/api/MP4_xiaojiejie" class="nav-link"><i class="fa-solid fa-video"></i> 每日视频</a>
-                    <a href="https://www.zzzzz688.com" class="nav-link"><i class="fa-solid fa-star"></i> PC游戏</a>                    
-                    <a href="https://kcnawatch.org/korea-central-tv-livestream" class="nav-link"><i class="fa-solid fa-star"></i> 朝鲜TV</a>
-                </div>
-
-                <!-- 随机文本栏 -->
-                <div class="random-text-box">
-                    <div class="random-text-header">
-                        <h2 class="title" style="font-size: 18px;"> 每日一言</h2>
-                        <button class="btn" style="padding: 4px 10px; font-size: 14px;" onclick="showRandomText()">
-                            <i class="fa-solid fa-rotate"></i> 换一条
-                        </button>
-                    </div>
-                    <div class="random-text-content" id="randomText">加载中...</div>
-                </div>
-            </div>
-
-            <div class="card flex-item">
-                <h2 class="title"><i class="fa-solid fa-image"></i> 美好瞬间</h2>
-                <p class="subtitle">你的一次回眸，却触动了我的心弦...</p>
+                <h2 class="title"><i class="fa-solid fa-image"></i> TB IMG</h2>
+                <p class="subtitle"></p>
                 <div style="border-radius: 12px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
-                    <img src="https://t.alcy.cc/ycy" alt="Banner" style="width: 100%; height: auto;">
+                    <img src="https://cdn.jsdelivr.net/gh/ttbb1978/ttbb1978.github.io@tb01/img/004.jpg" alt="Banner" style="width: 100%; height: auto;">
                 </div>
             </div>
         </section>
-        
-        <!-- 下载资源区域 -->
-        <section class="card">
-            <h2 class="title"><i class="fa-solid fa-download"></i> 工具下载</h2>
-            <p class="subtitle">本地工具，无需联网即可使用</p>
-            
-            <div class="download-list">
-                <div class="download-card">
-                    <div class="download-title">
-                        <i class="fa-brands fa-android download-icon" style="color: #3ddc84;"></i>
-                        编码工具（安卓）
-                    </div>
-                    <p class="margin-b-8">支持Base64文本编码/解码，轻量无广告</p>
-                    <a href="https://cdn.jsdelivr.net/gh/ttbb1978/ttbb1978.github.io@tb01/img/BASE64%E7%BC%96%E7%A0%81.apk" class="btn">
-                        <i class="fa-solid fa-download"></i> 下载
-                    </a>
-                </div>
                 
-                <div class="download-card">
-                    <div class="download-title">
-                        <i class="fa-solid fa-desktop download-icon" style="color: #2196f3;"></i>
-                        右键管理
-                    </div>
-                    <p class="margin-b-8">Windows端桌面工具，右键管理功能</p>
-                    <a href="https://cdn.jsdelivr.net/gh/ttbb1978/ttbb1978.github.io@tb01/img/%E5%8F%B3%E9%94%AE%E7%AE%A1%E7%90%86.zip" class="btn">
-                        <i class="fa-solid fa-download"></i> 下载
-                    </a>
-                </div>
-                
-                <div class="download-card">
-                    <div class="download-title">
-                        <i class="fa-solid fa-desktop download-icon" style="color: #ff9800;"></i>
-                        图片编码
-                    </div>
-                    <p class="margin-b-8">Windows端桌面工具，Base64图片编码功能</p>
-                    <a href="https://cdn.jsdelivr.net/gh/ttbb1978/ttbb1978.github.io@tb01/img/Base64%E5%9B%BE%E7%89%87.zip" class="btn">
-                        <i class="fa-solid fa-download"></i> 下载
-                    </a>
-                </div>
-                
-                <div class="download-card">
-                    <div class="download-title">
-                        <i class="fa-solid fa-desktop download-icon" style="color: #e91e63;"></i>
-                        TB记事本
-                    </div>
-                    <p class="margin-b-8">Windows端桌面工具，Base64编码功能</p>
-                    <a href="https://cdn.jsdelivr.net/gh/ttbb1978/ttbb1978.github.io@tb01/img/TB%E8%AE%B0%E4%BA%8B%E6%9C%AC.zip" class="btn">
-                        <i class="fa-solid fa-download"></i> 下载
-                    </a>
-                </div>
-            </div>
-        </section>
-        
         <!-- 页脚信息 -->                      
         <div class="footer-text">        
             <p style="font-size: 16px;">提供维护：🍀TB🌸ハンサム</p>
             <p style="font-size: 16px;">四川省 德阳市 旌阳区（天元街道）</p>
-            <p style="font-size: 16px;">&copy;&nbsp;2021-2026 TB All Rights Reserved</p>
+            <p style="font-size: 16px;">&copy;&nbsp;1995-2026 TB HSJR All Rights Reserved</p>
         </div>
     </div>
 
@@ -574,7 +406,7 @@
         // 网站运行时间计算
         function showDateTime() {
             setInterval(() => {
-                const timeOld = new Date() - new Date("01/07/2026 00:00:00");
+                const timeOld = new Date() - new Date("01/01/1995 00:00:00");
                 const days = Math.floor(timeOld / (24 * 60 * 60 * 1000));
                 const hours = Math.floor((timeOld % (24 * 60 * 60 * 1000)) / (60 * 60 * 1000));
                 const mins = Math.floor((timeOld % (60 * 60 * 1000)) / (60 * 1000));
@@ -582,40 +414,7 @@
                 document.getElementById('aa').textContent = `${days}天 ${hours}小时 ${mins}分 ${secs}秒`;
             }, 1000);
         }
-
-        // 随机文本数据
-        const textList = [
-            "风儿你可别笑我，你又怎知我难过。",
-            "在我的心里 住着一个过客，万般想念我却不能说。",
-            "你转身走的利落，我却空守着寂寞。",
-            "多少次为你 喝到天快亮了，回忆为何不肯放过我。",
-            "你是我此生难渡的情劫，连梦里你都不肯见一面。",
-            "一边想要忘记你 一边放不下从前，这种痛苦始终缠绕心间。",
-            "你是我此生难渡的情劫，数不清为你失过多少眠。",
-            "既然结局是离别 当初又何必遇见，你这一走让我一生都挂牵。",
-            "爱一旦结冰一切都好平静，泪水它一旦流尽只剩决心。",
-            "放逐自己在黑夜的边境，任由黎明一步一步向我逼近。",
-            "想你的心化成灰烬，真的有点累了没什么力气。",
-            "有太多太多回忆哽住呼吸，爱你的心我无处投递。",
-            "如果可以飞檐走壁找到你。",
-            "爱的委屈不必澄清，只要你将我抱紧。",
-            "如果云知道,想你的夜慢慢熬。"
-        ];
-
-        // 显示随机文本
-        function showRandomText() {
-            const randomTextElement = document.getElementById('randomText');
-            randomTextElement.style.opacity = "0";
-            randomTextElement.style.transform = "translateY(10px)";
-            
-            setTimeout(() => {
-                const randomIndex = Math.floor(Math.random() * textList.length);
-                randomTextElement.textContent = textList[randomIndex];
-                randomTextElement.style.opacity = "1";
-                randomTextElement.style.transform = "translateY(0)";
-            }, 300);
-        }
-        
+       
         // 主题切换功能
         function toggleTheme() {
             const body = document.body;
