@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title>TB HSJR 个人页面</title>
     
     <!-- 引入外部资源 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
     
     <style>
         /* 基础样式重置 */
@@ -46,11 +46,11 @@
         .text-center { text-align: center; }
         .text-center img { 
             border-radius: 10%; 
-            border: 3px solid rgba(255, 255, 255, 0.8);
+            border: 1px solid #eee;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             width: 75px;
-            border: 1px solid #eee;
+            margin: 0 4px;
         }
         
         .text-center img:hover {
@@ -299,29 +299,7 @@
             padding-right: 20px;
             transition: all 0.3s ease;
         }
-        
-        /* 访问统计样式 */
-        .visit-counter {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 14px;
-            color: #808080;
-            padding: 4px 10px;
-            border-radius: 15px;
-            background-color: rgba(0,0,0,0.03);
-            transition: all 0.3s ease;
-        }
-        
-        .visit-counter:hover { background-color: rgba(0,0,0,0.05); }
-        
-        body.dark-mode .visit-counter {
-            color: #aaa;
-            background-color: rgba(255,255,255,0.03);
-        }
-        
-        body.dark-mode .visit-counter:hover { background-color: rgba(255,255,255,0.05); }
-        
+     
         /* 卡片头部样式 */
         .card-header {
             display: flex;
@@ -341,6 +319,7 @@
             .contact-list { gap: 16px; }
             .download-list { gap: 16px; }
             .title { font-size: 18px; }
+            .text-center img { width: 60px; }
         }
     </style>
 </head>
@@ -357,46 +336,30 @@
         <!-- 个人信息区域 -->
         <section class="card">
             <div class="card-header">
-               <h2 class="title"></h2>
-               <div class="visit-counter">                                                                     
-                   <span><i class="fa fa-cog fa-spin"></i></span> 
-                   在线<span id="aa"></span>
+               <div class="visit-counter">
                </div>
             </div>
-            
-            <div class="text-center" style="margin: 24px 0;">
-                <img src="https://ak-d.tripcdn.com/images/1A0a1e000001fr5q55789_C_760_506_R5.jpg"/>
-                <img src="https://ak-d.tripcdn.com/images/0100a12000odk4pee10E5_C_760_506_R5.jpg"/>
-                <img src="https://ak-d.tripcdn.com/images/1A0o1e000001foof84DD7_C_760_506_R5.jpg"/>
-                <img src="https://ak-d.tripcdn.com/images/1A051e000001fsccbBE2B_C_760_506_R5.jpg"/>
-            </div> 
-            
-            <center>		
-                <a href="https://hits.sh/tb.hsjr.ndjp.net">
-                    <img alt="点击数" src="https://hits.sh/tb.hsjr.ndjp.net.svg?style=flat-square&label=%E8%AE%BF%E9%97%AE%E9%87%8F&extraCount=0&color=007ec6"/>
+            <center>
+	  在线<span id="aa"></span>	                
+                  <p class="subtitle">邮箱：hsjr@tb90.de5.net</p>  
                 </a>
             </center>
-
-            <div class="contact-list">
-                <div class="contact-item">
-                    <i class="fa-solid fa-envelope contact-icon"></i>
-                    <span><a href="mailto:hsjr@tb90.de5.net">hsjr@tb90.de5.net</a></span>                    
-                </div>
-            </div>
-        </section>
-                
-            <div class="card flex-item">
-                <h2 class="title"><i class="fa-solid fa-image"></i> TB IMG</h2>
-                <p class="subtitle"></p>
-                <div style="border-radius: 12px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+             <div class="flex-item">
+                <div style="border-radius: 12px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin: 16px 0;">
                     <img src="https://cdn.jsdelivr.net/gh/ttbb1978/ttbb1978.github.io@tb01/img/004.jpg" alt="Banner" style="width: 100%; height: auto;">
                 </div>
+
+                <div class="text-center" style="margin: 24px 0;">
+                    <img src="https://ak-d.tripcdn.com/images/1A0a1e000001fr5q55789_C_760_506_R5.jpg" alt="展示图片1"/>
+                    <img src="https://ak-d.tripcdn.com/images/0100a12000odk4pee10E5_C_760_506_R5.jpg" alt="展示图片2"/>
+                    <img src="https://ak-d.tripcdn.com/images/1A0o1e000001foof84DD7_C_760_506_R5.jpg" alt="展示图片3"/>
+                    <img src="https://ak-d.tripcdn.com/images/1A051e000001fsccbBE2B_C_760_506_R5.jpg" alt="展示图片4"/>
+                </div> 
             </div>
         </section>
                 
         <!-- 页脚信息 -->                      
         <div class="footer-text">        
-            <p style="font-size: 16px;">提供维护：🍀TB🌸ハンサム</p>
             <p style="font-size: 16px;">四川省 德阳市 旌阳区（天元街道）</p>
             <p style="font-size: 16px;">&copy;&nbsp;1995-2026 TB HSJR All Rights Reserved</p>
         </div>
@@ -442,7 +405,6 @@
             
             // 初始化功能
             showDateTime();
-            showRandomText();
         });
     </script>
 </body>
