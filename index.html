@@ -274,8 +274,8 @@
         .img-modal.active { display: flex; }
         
         .modal-img {
-            max-width: 90%;
-            max-height: 90%;
+            max-width: 100%;
+            max-height: 100%;
             border-radius: 8px;
             animation: imgZoomIn 0.3s ease;
         }
@@ -317,9 +317,9 @@
         
         /* 主图响应式优化 */
         .main-img {
-            max-width: 100%;
+            max-width: 90%;
             height: auto;
-            border: 1px solid #eee;
+            border: 0px solid #eee;
             display: block;
             margin: 0 auto;
         }
@@ -329,7 +329,7 @@
     <div class="container">
         <!-- 头部区域 -->
         <header class="header">
-            <div class="logo">🌱 TB  HSTS</div>
+            <div class="logo">TB🌱HSTS</div>
             <button class="theme-toggle" onclick="toggleTheme()" aria-label="切换暗黑/亮色主题">
                 <i class="fa-solid fa-moon"></i>
             </button>
@@ -341,9 +341,9 @@
                 <span id="aa"></span>
                 <p class="subtitle">邮箱：hsjr@tb90.de5.net</p>
             </div>
-             <div class="flex-item">
-                <div style="border-radius: 12px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin: 16px 0;">
-                    <img src="https://bbsstatic.oneplus.com/data/attachment/forum/201604/12/113631j0iu2znguc3zr0n3.jpg?x-ocs-process=image/format,webp/resize,w_1920" class="main-img" alt="个人展示主图" onerror="this.src='https://tb.780066.xyz/img/005.jpg'">
+             <center>一处美景，邂逅一次，便会万劫不复地爱上</center><br>
+             <div class="flex-item">                
+                    <img src="https://bkimg.cdn.bcebos.com/pic/5ab5c9ea15ce36d3d53945b677a52d87e950342a1ba4" class="main-img" alt="展示主图" onerror="this.src='https://tb.780066.xyz/img/005.jpg'">
                 </div>
 
                 <!-- 可点击放大的随机小图区域 -->
@@ -364,7 +364,7 @@
         <!-- 页脚信息 -->                      
         <div class="footer-text">        
             <p style="font-size: 16px;">四川省 德阳市 旌阳区（天元街道）</p>
-            <p style="font-size: 16px;">&copy;&nbsp;1997-2026 TB  HSTS All Rights Reserved</p>
+            <p style="font-size: 16px;">&copy;&nbsp;2026 TB🌱HSTS All Rights Reserved</p>
         </div>
     </div>
 
@@ -406,7 +406,7 @@
             imgContainer.innerHTML = '';
             
             // 生成4张随机小图（可修改循环次数调整展示数量）
-            for (let i = 0; i < 4; i++) {
+            for (let i = 0; i < 3; i++) {
                 const randomImgSrc = getRandomImg();
                 const imgElement = document.createElement('img');
                 
@@ -416,7 +416,7 @@
                 imgElement.onclick = () => previewImg(randomImgSrc); // 绑定预览事件
                 imgElement.onerror = () => {
                     // 图片加载失败兜底
-                    imgElement.src = "https://api.paugram.com/bing";
+                    imgElement.src = "";
                 };
                 
                 // 添加图片到容器
