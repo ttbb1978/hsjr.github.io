@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TB HSJR 个人页面</title>
+    <title>TB HSJR 页面</title>
     
     <!-- 引入外部资源 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -294,6 +294,35 @@
             .text-center img { width: 60px; }
             .modal-img { max-width: 95%; max-height: 80%; }
         }
+        
+        /* 新增：随机图片刷新按钮样式 */
+        .refresh-img-btn {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 24px;
+            background: linear-gradient(90deg, #3ddc84, #3366ff);
+            color: #fff;
+            border: none;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .refresh-img-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(51, 102, 255, 0.2);
+        }
+        
+        /* 主图响应式优化 */
+        .main-img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #eee;
+            display: block;
+            margin: 0 auto;
+        }
     </style>
 </head>
 <body>
@@ -301,7 +330,7 @@
         <!-- 头部区域 -->
         <header class="header">
             <div class="logo">🌱 TB  HSTS</div>
-            <button class="theme-toggle" onclick="toggleTheme()">
+            <button class="theme-toggle" onclick="toggleTheme()" aria-label="切换暗黑/亮色主题">
                 <i class="fa-solid fa-moon"></i>
             </button>
         </header>
@@ -314,16 +343,16 @@
             </div>
              <div class="flex-item">
                 <div style="border-radius: 12px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin: 16px 0;">
-                    <img src="https://img1.baidu.com/it/u=1493190235,2115226273&fm=253" alt="Banner" style="width: 100%; height: auto;" loading="lazy">
+                    <img src="https://bbsstatic.oneplus.com/data/attachment/forum/201604/12/113631j0iu2znguc3zr0n3.jpg?x-ocs-process=image/format,webp/resize,w_1920" class="main-img" alt="个人展示主图" onerror="this.src='https://tb.780066.xyz/img/005.jpg'">
                 </div>
 
-                <!-- 可点击放大的小图区域 -->
-                <div class="text-center" style="margin: 24px 0;">
-                    <img src="https://img1.baidu.com/it/u=1493190235,2115226273&fm=253" alt="展示图片1" onclick="previewImg(this.src)"/>
-                    <img src="https://img1.baidu.com/it/u=371620987,1610906420&fm=253" alt="展示图片2" onclick="previewImg(this.src)"/>
-                    <img src="https://img.meituan.net/leadinimg/7be9705ec8c507e6ecd3c93b06fb31c11069644.jpg" alt="展示图片3" onclick="previewImg(this.src)"/>
-                    <img src="https://ak-d.tripcdn.com/images/1A051e000001fsccbBE2B_C_760_506_R5.jpg" alt="展示图片4" onclick="previewImg(this.src)"/>
-                </div> 
+                <!-- 可点击放大的随机小图区域 -->
+                <div class="text-center" style="margin: 24px 0;" id="random-img-container">
+                    <!-- 随机图片将通过JS动态生成 -->
+                </div>
+                
+                <!-- 新增：刷新随机图片按钮 -->
+                <button class="refresh-img-btn" onclick="renderRandomImgs()">刷新图片</button>
             </div>
         </section>
         
@@ -340,7 +369,62 @@
     </div>
 
     <script>
-        // 1. 网站运行时间计算（优化：提取固定起始时间，避免冗余实例化）
+        // 1. 构建随机图片数组（选用稳定无跨域的图片资源，picsum.photos 提供随机图片服务）
+        const imgSourceArray = [
+            "https://img1.baidu.com/it/u=1493190235,2115226273&fm=253",
+            "https://img1.baidu.com/it/u=371620987,1610906420&fm=253",
+            "https://img.meituan.net/leadinimg/7be9705ec8c507e6ecd3c93b06fb31c11069644.jpg",
+            "https://ak-d.tripcdn.com/images/1A051e000001fsccbBE2B_C_760_506_R5.jpg",
+            "https://img0.baidu.com/it/u=2352096359,2796164477&fm=253&app=138&f=JPEG?w=1202&h=800",
+            "https://img2.baidu.com/it/u=3943912374,850965&fm=253&app=138&f=JPEG?w=1202&h=800",
+            "https://img1.baidu.com/it/u=2066950032,2577883589&fm=253&app=138&f=JPEG?w=1202&h=800",
+            "https://img2.baidu.com/it/u=1885186740,1295056065&fm=253&app=138&f=JPEG?w=1202&h=800",
+            "https://img2.baidu.com/it/u=3818182444,1329481310&fm=253&app=138&f=JPEG?w=1202&h=800",
+            "https://img2.baidu.com/it/u=4237418993,204496634&fm=253&app=138&f=JPEG?w=1108&h=800",
+            "https://miaobi-lite.bj.bcebos.com/miaobi/5mao/b%275rGJ5Lit5Y2X6YOR5Y6/5paw6ZuG6ZWH6KGX5Zu%2B54mHXzE3MzUzNDk5NTAuMDYwMjAwN18xNzM1MzQ5OTUxLjEzMTkwMjVfMTczNTM0OTk1Mi40NjM1MTg0%27/2.png",
+            "https://img1.baidu.com/it/u=2549086777,2427120388&fm=253&fmt=auto&app=138&f=JPEG?w=752&h=500",
+            "https://img0.baidu.com/it/u=91188493,2710847789&fm=253&fmt=auto&app=138&f=JPEG?w=750&h=500",
+            "https://img1.baidu.com/it/u=3613598572,3835206287&fm=253&fmt=auto&app=138&f=JPEG?w=826&h=500",
+            "https://img2.baidu.com/it/u=4021375282,2201322830&fm=253&fmt=auto&app=138&f=JPEG?w=803&h=500",
+            "https://img1.baidu.com/it/u=3420536553,1161765584&fm=253&fmt=auto&app=138&f=JPEG?w=750&h=500",
+            "https://bkimg.cdn.bcebos.com/pic/54fbb2fb43166d221e78f882492309f79052d29d",
+            "https://bkimg.cdn.bcebos.com/pic/738b4710b912c8fc21bd1bdbf3039245d688215e",
+            "https://img1.baidu.com/it/u=1116964772,3312547175&fm=253&app=138&f=JPEG?w=1067&h=800"
+        ];
+        
+        // 2. 随机获取单张图片链接的函数
+        function getRandomImg() {
+            // Math.random() 生成 0-1 随机数，乘以数组长度得到 0-数组长度-1 的范围，Math.floor() 向下取整
+            const randomIndex = Math.floor(Math.random() * imgSourceArray.length);
+            return imgSourceArray[randomIndex];
+        }
+        
+        // 3. 渲染随机图片到页面（生成4张随机小图，保留预览功能）
+        function renderRandomImgs() {
+            const imgContainer = document.getElementById('random-img-container');
+            // 清空原有图片，避免重复累加
+            imgContainer.innerHTML = '';
+            
+            // 生成4张随机小图（可修改循环次数调整展示数量）
+            for (let i = 0; i < 4; i++) {
+                const randomImgSrc = getRandomImg();
+                const imgElement = document.createElement('img');
+                
+                // 设置图片属性
+                imgElement.src = randomImgSrc;
+                imgElement.alt = `随机展示图片 ${i+1}`;
+                imgElement.onclick = () => previewImg(randomImgSrc); // 绑定预览事件
+                imgElement.onerror = () => {
+                    // 图片加载失败兜底
+                    imgElement.src = "https://picsum.photos/200/200?fallback";
+                };
+                
+                // 添加图片到容器
+                imgContainer.appendChild(imgElement);
+            }
+        }
+        
+        // 4. 网站运行时间计算（优化：提取固定起始时间，避免冗余实例化）
         function showDateTime() {
             const startTime = new Date("01/01/1997 00:00:00"); // 固定起始时间，仅初始化一次
             setInterval(() => {
@@ -353,7 +437,7 @@
             }, 1000);
         }
        
-        // 2. 主题切换功能（保留核心，精简冗余逻辑）
+        // 5. 主题切换功能（保留核心，精简冗余逻辑）
         function toggleTheme() {
             const body = document.body;
             const icon = document.querySelector('.theme-toggle i');
@@ -366,7 +450,7 @@
             localStorage.setItem('theme', body.classList.contains('dark-mode') ? 'dark' : 'light');
         }
         
-        // 3. 新增：大图预览功能
+        // 6. 大图预览功能
         function previewImg(imgSrc) {
             const modal = document.querySelector('.img-modal');
             const previewImg = document.getElementById('previewImg');
@@ -377,7 +461,7 @@
             document.body.style.overflow = 'hidden';
         }
         
-        // 4. 新增：关闭大图预览
+        // 7. 关闭大图预览
         function closeImgPreview() {
             const modal = document.querySelector('.img-modal');
             
@@ -386,7 +470,7 @@
             document.body.style.overflow = 'auto';
         }
         
-        // 4. 页面初始化（精简冗余代码，保留核心功能）
+        // 8. 页面初始化（精简冗余代码，保留核心功能）
         window.addEventListener('DOMContentLoaded', () => {
             // 加载保存的主题
             const savedTheme = localStorage.getItem('theme');
@@ -397,6 +481,9 @@
             
             // 初始化运行时间统计
             showDateTime();
+            
+            // 初始化渲染随机图片（页面加载完成后自动生成）
+            renderRandomImgs();
         });
     </script>
 </body>
