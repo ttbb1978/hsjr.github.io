@@ -21,7 +21,7 @@
             color: #000;
             line-height: 1.6;
             padding: 20px;
-            transition: background-color 0.3s ease, color 0.3s ease;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
             min-height: 100vh;
             overflow-x: hidden;
             background-image: 
@@ -43,6 +43,7 @@
             object-fit: cover;
         }
         
+        /* 文本居中工具类（复用，删除冗余内联样式） */
         .text-center { text-align: center; }
         .text-center img { 
             border-radius: 10%; 
@@ -51,6 +52,7 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             width: 75px;
             margin: 0 4px;
+            cursor: zoom-in; /* 提示可点击放大 */
         }
         
         .text-center img:hover {
@@ -115,7 +117,7 @@
         .card:hover .subtitle { color: #444; }
         .margin-b-8 { margin-bottom: 8px; }
                 
-        /* 布局工具类 */
+        /* 布局工具类（保留核心，删除未使用冗余） */
         .flex { display: flex; gap: 24px; flex-wrap: wrap; }
         .flex-item { flex: 1; min-width: 280px; }
         
@@ -206,7 +208,7 @@
             margin-top: 40px;
         }
         
-        /* 暗黑模式样式 */
+        /* 暗黑模式样式（精简未使用的冗余样式） */
         body.dark-mode { 
             background: #141414; 
             color: #fffffd; 
@@ -221,29 +223,12 @@
         body.dark-mode .subtitle, body.dark-mode .footer-text { color: #bbb; }
         body.dark-mode .card:hover .subtitle { color: #ccc; }
         
-        body.dark-mode .download-card:nth-child(1) { background-color: rgba(61, 220, 132, 0.08); }
-        body.dark-mode .download-card:nth-child(2) { background-color: rgba(33, 150, 243, 0.08); }
-        body.dark-mode .download-card:nth-child(3) { background-color: rgba(255, 152, 0, 0.08); }
-        body.dark-mode .download-card:nth-child(4) { background-color: rgba(233, 30, 99, 0.08); }
-        
         body.dark-mode .logo { color: #fff; }
         body.dark-mode a { color: #4477ff; }
-        body.dark-mode a::after { background-color: #4477ff; }
         body.dark-mode .contact-icon { color: #4477ff; }
         body.dark-mode .contact-item { background-color: rgba(50, 50, 70, 0.6); }
         body.dark-mode .contact-item:hover { background-color: rgba(68, 119, 255, 0.1); }
         body.dark-mode .footer-text { border-top: 1px solid #333; }
-        
-        body.dark-mode .btn {
-            background: #4477ff;
-            box-shadow: 0 2px 5px rgba(68, 119, 255, 0.3);
-        }
-        
-        body.dark-mode .btn:hover { 
-            background: #5a88ff; 
-            box-shadow: 0 4px 10px rgba(68, 119, 255, 0.4);
-        }
-        
         body.dark-mode .nav-link:hover { background-color: rgba(68, 119, 255, 0.1); }
         
         /* 主题切换按钮 */
@@ -270,56 +255,44 @@
         body.dark-mode .theme-toggle { color: #c0c0c0; }
         body.dark-mode .theme-toggle:hover { background-color: rgba(255,255,255,0.05); }
         
-        /* 随机文本区域样式 */
-        .random-text-box {
-            margin-top: 24px;
+        /* 新增：大图预览模态框样式 */
+        .img-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
             padding: 20px;
-            border: 1px solid #eee;
-            border-radius: 12px;
-            background-color: rgba(249, 249, 249, 0.8);
-            transition: all 0.3s ease;
+            cursor: zoom-out;
         }
         
-        body.dark-mode .random-text-box { 
-            border-color: #444; 
-            background-color: rgba(51, 51, 51, 0.8); 
+        .img-modal.active { display: flex; }
+        
+        .modal-img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 8px;
+            animation: imgZoomIn 0.3s ease;
         }
         
-        .random-text-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 16px;
+        @keyframes imgZoomIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
         }
         
-        .random-text-content {
-            font-size: 16px;
-            line-height: 1.8;
-            min-height: 60px;
-            padding-right: 20px;
-            transition: all 0.3s ease;
-        }
-     
-        /* 卡片头部样式 */
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
-        
-        /* 响应式样式 */
+        /* 响应式样式（精简优化） */
         @media (max-width: 768px) {
-            .header { align-items: flex-start; padding: 12px 0; }
+            .header { align-items: center; padding: 12px 0; }
             .nav { gap: 12px; margin-top: 10px; }
             .flex { flex-direction: column; gap: 16px; }
-            .card-header { flex-direction: column; align-items: flex-start; gap: 12px; }
-            .contact-list { gap: 16px; }
-            .download-list { gap: 16px; }
             .title { font-size: 18px; }
             .text-center img { width: 60px; }
+            .modal-img { max-width: 95%; max-height: 80%; }
         }
     </style>
 </head>
@@ -327,7 +300,7 @@
     <div class="container">
         <!-- 头部区域 -->
         <header class="header">
-            <div class="logo">🍁 TB HSJR</div>
+            <div class="logo">🍁 TB HSTS</div>
             <button class="theme-toggle" onclick="toggleTheme()">
                 <i class="fa-solid fa-moon"></i>
             </button>
@@ -335,41 +308,43 @@
         
         <!-- 个人信息区域 -->
         <section class="card">
-            <div class="card-header">
-               <div class="visit-counter">
-               </div>
+            <div class="text-center">
+                SN:<span id="aa"></span>	                
+                <p class="subtitle">邮箱：hsjr@tb90.de5.net</p>
             </div>
-            <center>
-	  在线<span id="aa"></span>	                
-                  <p class="subtitle">邮箱：hsjr@tb90.de5.net</p>  
-                </a>
-            </center>
              <div class="flex-item">
                 <div style="border-radius: 12px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin: 16px 0;">
-                    <img src="https://cdn.jsdelivr.net/gh/ttbb1978/ttbb1978.github.io@tb01/img/004.jpg" alt="Banner" style="width: 100%; height: auto;">
+                    <img src="https://cdn.jsdelivr.net/gh/ttbb1978/ttbb1978.github.io@tb01/img/004.jpg" alt="Banner" style="width: 100%; height: auto;" loading="lazy">
                 </div>
 
+                <!-- 可点击放大的小图区域 -->
                 <div class="text-center" style="margin: 24px 0;">
-                    <img src="https://ak-d.tripcdn.com/images/1A0a1e000001fr5q55789_C_760_506_R5.jpg" alt="展示图片1"/>
-                    <img src="https://ak-d.tripcdn.com/images/0100a12000odk4pee10E5_C_760_506_R5.jpg" alt="展示图片2"/>
-                    <img src="https://ak-d.tripcdn.com/images/1A0o1e000001foof84DD7_C_760_506_R5.jpg" alt="展示图片3"/>
-                    <img src="https://ak-d.tripcdn.com/images/1A051e000001fsccbBE2B_C_760_506_R5.jpg" alt="展示图片4"/>
+                    <img src="https://ak-d.tripcdn.com/images/1A0a1e000001fr5q55789_C_760_506_R5.jpg" alt="展示图片1" onclick="previewImg(this.src)"/>
+                    <img src="https://ak-d.tripcdn.com/images/0100a12000odk4pee10E5_C_760_506_R5.jpg" alt="展示图片2" onclick="previewImg(this.src)"/>
+                    <img src="https://ak-d.tripcdn.com/images/1A0o1e000001foof84DD7_C_760_506_R5.jpg" alt="展示图片3" onclick="previewImg(this.src)"/>
+                    <img src="https://ak-d.tripcdn.com/images/1A051e000001fsccbBE2B_C_760_506_R5.jpg" alt="展示图片4" onclick="previewImg(this.src)"/>
                 </div> 
             </div>
         </section>
+        
+        <!-- 新增：大图预览模态框 -->
+        <div class="img-modal" onclick="closeImgPreview()">
+            <img src="" alt="大图预览" class="modal-img" id="previewImg">
+        </div>
                 
         <!-- 页脚信息 -->                      
         <div class="footer-text">        
             <p style="font-size: 16px;">四川省 德阳市 旌阳区（天元街道）</p>
-            <p style="font-size: 16px;">&copy;&nbsp;1995-2026 TB HSJR All Rights Reserved</p>
+            <p style="font-size: 16px;">&copy;&nbsp;1995-2026 TB HSTS All Rights Reserved</p>
         </div>
     </div>
 
     <script>
-        // 网站运行时间计算
+        // 1. 网站运行时间计算（优化：提取固定起始时间，避免冗余实例化）
         function showDateTime() {
+            const startTime = new Date("01/01/1995 00:00:00"); // 固定起始时间，仅初始化一次
             setInterval(() => {
-                const timeOld = new Date() - new Date("01/01/1995 00:00:00");
+                const timeOld = new Date() - startTime;
                 const days = Math.floor(timeOld / (24 * 60 * 60 * 1000));
                 const hours = Math.floor((timeOld % (24 * 60 * 60 * 1000)) / (60 * 60 * 1000));
                 const mins = Math.floor((timeOld % (60 * 60 * 1000)) / (60 * 1000));
@@ -378,32 +353,49 @@
             }, 1000);
         }
        
-        // 主题切换功能
+        // 2. 主题切换功能（保留核心，精简冗余逻辑）
         function toggleTheme() {
             const body = document.body;
-            body.classList.toggle('dark-mode');
             const icon = document.querySelector('.theme-toggle i');
             
-            if (body.classList.contains('dark-mode')) {
-                icon.className = 'fa-solid fa-sun';
-            } else {
-                icon.className = 'fa-solid fa-moon';
-            }
+            body.classList.toggle('dark-mode');
+            icon.className = body.classList.contains('dark-mode') 
+                ? 'fa-solid fa-sun' 
+                : 'fa-solid fa-moon';
             
             localStorage.setItem('theme', body.classList.contains('dark-mode') ? 'dark' : 'light');
         }
         
-        // 页面加载完成后初始化
+        // 3. 新增：大图预览功能
+        function previewImg(imgSrc) {
+            const modal = document.querySelector('.img-modal');
+            const previewImg = document.getElementById('previewImg');
+            
+            previewImg.src = imgSrc;
+            modal.classList.add('active');
+            // 禁止页面滚动
+            document.body.style.overflow = 'hidden';
+        }
+        
+        // 4. 新增：关闭大图预览
+        function closeImgPreview() {
+            const modal = document.querySelector('.img-modal');
+            
+            modal.classList.remove('active');
+            // 恢复页面滚动
+            document.body.style.overflow = 'auto';
+        }
+        
+        // 4. 页面初始化（精简冗余代码，保留核心功能）
         window.addEventListener('DOMContentLoaded', () => {
-            // 加载保存的主题设置
+            // 加载保存的主题
             const savedTheme = localStorage.getItem('theme');
-            const icon = document.querySelector('.theme-toggle i');
             if (savedTheme === 'dark') {
                 document.body.classList.add('dark-mode');
-                icon.className = 'fa-solid fa-sun';
+                document.querySelector('.theme-toggle i').className = 'fa-solid fa-sun';
             }
             
-            // 初始化功能
+            // 初始化运行时间统计
             showDateTime();
         });
     </script>
