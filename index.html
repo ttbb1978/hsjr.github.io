@@ -416,7 +416,7 @@
                 imgElement.onclick = () => previewImg(randomImgSrc); // 绑定预览事件
                 imgElement.onerror = () => {
                     // 图片加载失败兜底
-                    imgElement.src = "https://picsum.photos/200/200?fallback";
+                    imgElement.src = "https://api.paugram.com/bing";
                 };
                 
                 // 添加图片到容器
