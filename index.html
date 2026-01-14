@@ -1,103 +1,102 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
-  <meta http-equiv="content-type" content="txt/html; charset=utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-  <title>Shorter URL</title>
-  <!-- <link rel="stylesheet" href="https://crazypeace.github.io/Url-Shorten-Worker/styles.css"> -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/crazypeace/Url-Shorten-Worker/styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TB HSTS 页面</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* 极简重置与基础样式 */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: sans-serif; background: #eef7ff; color: #000000; padding: 10px; min-height: 100vh; transition: all 0.3s ease; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        img { border-radius: 8px; max-width: 100%; height: auto; transition: all 0.3s ease; }
+
+        /* 核心工具类 */
+        .text-center { text-align: center; margin: 16px 0; }
+        .card { background: rgba(255,255,255,0.85); border-radius: 12px; padding: 16px; margin-bottom: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); transition: all 0.3s ease; }
+        .card:hover { transform: translateY(-3px); box-shadow: 0 6px 12px rgba(0,0,0,0.1); }
+
+        /* 头部与切换按钮 */
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+        .logo { font-size: 22px; font-weight: 700; }
+        .theme-toggle { background: none; border: none; font-size: 20px; cursor: pointer; border-radius: 50%; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; }
+
+        /* 暗黑模式（极简版） */
+        body.dark { background: #343434; color: #fff; }
+        body.dark .card { background: rgba(40,40,56,0.85); }
+
+        /* 响应式极简适配 */
+        @media (max-width: 768px) {
+            .header { flex-wrap: wrap; gap: 8px; }
+            .text-center img { width: 60px; margin: 0 2px; }
+        }
+    </style>
 </head>
 <body>
-  <div class="d-flex align-items-start flex-wrap">
-  <div class="card shadow m-3">
-    <h5 class="card-header">A URL Shortener created using free Cloudflare worker and KV</h5>
-    <div class="card-body">
-      <h5 class="card-title"> </h5>
+    <div class="container">
+        <!-- 头部 -->
+        <header class="header">
+            <div class="logo">TB🌱HSTS</div>
+            <button class="theme-toggle" onclick="toggleTheme()" aria-label="切换主题">
+                <i class="fa-solid fa-moon"></i>
+            </button>
+        </header>
+        
+        <!-- 核心内容卡片 -->
+        <section class="card">
+            <div class="text-center">
+              ⏰<span id="ss"></span><br><br>
+                <p>邮箱：hsjr@tb90.de5.net</p>
+            </div>
 
-      <div class="input-group mb-3">
+            <!-- 主图 -->
+          
+            <center><img src="https://cdn.jsdelivr.net/gh/ttbb1978/ttbb1978.github.io@tb01/img/006.jpg" class="text-center" alt="展示图" ></center>
 
-          <span class="input-group-text" id="basic-addon1">输入长网址 URL</span>
-
-        <input type="text" class="form-control" id="longURL" aria-describedby="basic-addon1" placeholder="Example: https://example.com/" oninput="loadUrlList()">
-      </div>
-
-      <div class="input-group mb-3">
-
-          <span class="input-group-text" id="basic-addon2">自定义短链接 URL</span>
-
-        <input type="text" class="form-control" id="keyPhrase" aria-describedby="basic-addon2" placeholder="As you wish">
-      </div>
-
-      <div class="input-group mb-3">
-        <button class="btn btn-primary" type="button" onclick='shorturl()' id="addBtn">一键缩短</button>
-      </div>
-
-      <div class="input-group mb-3">
-
-          <span class="input-group-text" id="basic-addon3">密码</span>
-
-        <input class="form-control" type="text" value="__PASSWORD__" readonly="true" id="passwordText" aria-describedby="basic-addon3">
-      </div>
-
+        <!-- 页脚 -->
+        
+            <div class="text-center">
+            <p>四川省 德阳市 旌阳区（天元街道）</p><br>
+            <p>&copy; 2026 TB🌱HSTS All Rights Reserved</p>
+        </div>
     </div>
+
+    <script>
     
-    <div class="card-footer">
-      <span> <a href="https://github.com/crazypeace/Url-Shorten-Worker/" target="_self">Fork me on GitHub</a> </span>
-    </div>
-  </div>
 
-  <div class="card shadow m-3">
-    <h5 class="card-header">LocalStorage List</h5>
-    <div class="card-body">
-      <h5 class="card-title"> </h5>
-      <div class="input-group mb-3">
-        <button class="btn btn-success" type="button" onclick='loadUrlList()' id="loadListBtn">加载本地数据</button>
-        <button class="btn btn-danger" type="button" onclick='clearLocalStorage()' id="clearlocalStgBtn">清除本地数据</button>
-        <button class="btn btn-info" type="button" onclick='loadKV()' id="loadKV2localStgBtn">将 KV 加载到本地</button>
-      </div>
+        // 3. 运行时间统计
+        function showRunTime() {
+            const startTime = new Date("1997/01/01 00:00:00");
+            setInterval(() => {
+                const diff = new Date() - startTime;
+                const d = Math.floor(diff / (24*60*60*1000));
+                const h = Math.floor((diff % (24*60*60*1000)) / (60*60*1000));
+                const m = Math.floor((diff % (60*60*1000)) / (60*1000));
+                const s = Math.floor((diff % (60*1000)) / 1000);
+                document.getElementById('ss').textContent = `${d}天 ${h}小时 ${m}分 ${s}秒`;
+            }, 1000);
+        }
 
-      <div class="card-text">
-        <div classs="list-group" id="urlList">
-          <div class="mb-3 list-group-item">
-            <div class="input-group">
-              <button type="button" class="btn btn-danger" onclick='deleteShortUrl("4sure")' id="delBtn-4sure">X</button>
-              <button type="button" class="btn btn-info" onclick='queryVisitCount("4sure")' id="qryCntBtn-4sure">?</button>
-              <span class="form-control">https://1way.eu.org/4sure</span>
-            </div>
-            <div class="form-control">
-              https://en.y2mate.is/s36/youtube-to-mp3.html
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  </div>
-
-  <div class="modal fade" id="resultModal" tabindex="-1" role="dialog" aria-labelledby="resultModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="resultModalLabel">Result</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body" id="result">No result</div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" onclick='copyurl("result")' data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="Copied!">Copy</button>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-
-  <!-- <script src="https://crazypeace.github.io/Url-Shorten-Worker/main.js" crossorigin="anonymous"></script> -->
-  <script src="https://cdn.jsdelivr.net/gh/crazypeace/Url-Shorten-Worker/main.js" crossorigin="anonymous"></script>
-  <script>
-    // 函数的定义在 main.js 中
-    buildValueItemFunc = buildValueTxt
-  </script>
+        // 4. 主题切换
+        function toggleTheme() {
+            const body = document.body;
+            const icon = document.querySelector('.theme-toggle i');
+            body.classList.toggle('dark');
+            icon.className = body.classList.contains('dark') ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+            localStorage.setItem('theme', body.classList.contains('dark') ? 'dark' : 'light');
+        }
+     
+        // 6. 页面初始化（极简）
+        window.onload = () => {
+            // 加载保存的主题
+            if (localStorage.getItem('theme') === 'dark') {
+                document.body.classList.add('dark');
+                document.querySelector('.theme-toggle i').className = 'fa-solid fa-sun';
+            }
+            showRunTime();
+            renderImgs();
+        };
+    </script>
 </body>
 </html>
